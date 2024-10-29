@@ -10,7 +10,9 @@ const NotFound = () => {
 
 const App = () => {
   return (
-    <Router>
+    <Router basename="/first-react-app">
+      {" "}
+      {/* Replace 'first-react-app' with your repo name */}
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <Link className="navbar-brand" to="/">
           Movie Finder
