@@ -8,7 +8,9 @@ const Movie = () => {
   const [error, setError] = useState(""); // Initialize error state
 
   useEffect(() => {
-    fetch(`https://www.omdbapi.com/?i=${id}&apikey=b7da8d63`)
+    fetch(
+      `https://www.omdbapi.com/?i=${id}&apikey=${process.env.REACT_APP_OMDB_API_KEY}`,
+    )
       .then(checkStatus)
       .then(json)
       .then((data) => {
@@ -20,12 +22,13 @@ const Movie = () => {
       })
       .catch((error) => {
         setError(error.message); // Set error message in state if request fails
-        console.log(error);
       });
   }, [id]);
 
+  if (error) return <p role="alert">Error: {error}</p>;
+
   if (!movie) {
-    return null; // Render nothing if movie data hasn't loaded
+    return <p role="status">Loading movie details…</p>;
   }
 
   // Destructure movie properties for easier access

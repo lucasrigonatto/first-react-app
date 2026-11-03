@@ -9,7 +9,7 @@ const Movie = (props) => {
     <div className="row">
       <div className="col-4 col-md-2 col-lg-1 mb-3">
         <Link to={`/movie/${imdbID}/`}>
-          <img src={Poster} className="img-fluid" />
+          <img src={Poster} className="img-fluid" alt={Title + " poster"} />
         </Link>
       </div>
       <div className="col-8 col-md-10 col-lg-11 mb-3">
@@ -49,7 +49,9 @@ class MovieFinder extends React.Component {
       return;
     }
 
-    fetch(`https://www.omdbapi.com/?s=${searchTerm}&apikey=b7da8d63`)
+    fetch(
+      `https://www.omdbapi.com/?s=${encodeURIComponent(searchTerm)}&apikey=${process.env.REACT_APP_OMDB_API_KEY}`,
+    )
       .then(checkStatus)
       .then(json)
       .then((data) => {
@@ -58,13 +60,11 @@ class MovieFinder extends React.Component {
         }
 
         if (data.Response === "True" && data.Search) {
-          console.log(data);
           this.setState({ results: data.Search, error: "" });
         }
       })
       .catch((error) => {
         this.setState({ error: error.message });
-        console.log(error);
       });
   }
 

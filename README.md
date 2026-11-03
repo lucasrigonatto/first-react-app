@@ -1,70 +1,44 @@
-# Getting Started with Create React App
+# Movie Search — Routed React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A movie-search learning project built with React and React Router. Search results link to a dedicated movie page with a shareable URL.
 
-## Available Scripts
+## What problem did I solve?
 
-In the project directory, you can run:
+A search result is more useful when it has its own address. I built separate search and detail routes so a user can open a film, navigate back, or return directly to its detail page.
 
-### `yarn start`
+## What is included?
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- A search form backed by OMDb.
+- Result cards with links to movie details.
+- A movie route using the IMDb identifier.
+- Loading and error feedback.
+- A not-found route for unknown paths.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## How do I know my solution works?
 
-### `yarn test`
+Five automated tests exercise search results, blank input, opening a movie route, a failed detail request, and an unknown route. They mock OMDb responses rather than depend on live API availability. The production build passes. GitHub Actions repeats the tests and build for pushes and pull requests.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Run locally
 
-### `yarn build`
+Requires Node.js 22, npm, and an [OMDb API key](https://www.omdbapi.com/apikey.aspx).
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+npm ci
+cp .env.example .env.local
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Set `REACT_APP_OMDB_API_KEY` in `.env.local`, then run:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+npm start
+npm test -- --watchAll=false --runInBand
+npm run build
+```
 
-### `yarn eject`
+Open http://localhost:3000. Environment changes require a server restart.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## What I practiced
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Component state, client-side routing, route parameters, asynchronous requests, and testing user-visible behavior. This is an earlier learning project, separate from my single-screen [Movie Finder](https://github.com/lucasrigonatto/movie-finder).
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+A frontend API key is visible in the browser bundle. API quotas, posters, and external availability depend on OMDb. A production static host must route unmatched application URLs to `index.html`. The app uses the existing Create React App toolchain.
