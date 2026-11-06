@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { json, checkStatus } from "./utils";
 
 const Movie = () => {
@@ -33,10 +33,14 @@ const Movie = () => {
 
   // Destructure movie properties for easier access
   const { Title, Year, Plot, Director, imdbRating, Poster } = movie;
+  const hasPoster = Poster && Poster !== "N/A";
 
   return (
     <div className="container">
       <div className="row pt-5">
+        <div className="col-12 mb-3">
+          <Link to="/">Back to search</Link>
+        </div>
         <div className="col-6">
           <h1>{Title}</h1>
           <ul className="list-unstyled">
@@ -55,7 +59,9 @@ const Movie = () => {
           </ul>
         </div>
         <div className="col-6">
-          <img src={Poster} className="img-fluid" alt={`${Title} poster`} />
+          {hasPoster && (
+            <img src={Poster} className="img-fluid" alt={`${Title} poster`} />
+          )}
         </div>
       </div>
       {error && <p>Error: {error}</p>} {/* Display error if there's an issue */}

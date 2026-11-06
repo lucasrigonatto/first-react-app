@@ -11,7 +11,8 @@ A search result is more useful when it has its own address. I built separate sea
 - A search form backed by OMDb.
 - Result cards with links to movie details.
 - A movie route using the IMDb identifier.
-- Loading and error feedback.
+- Loading and error feedback, including a missing API key and titles without a poster.
+- A link back to search from the movie page.
 - A not-found route for unknown paths.
 
 ## How do I know my solution works?
