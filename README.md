@@ -42,4 +42,4 @@ Open http://localhost:3000. Environment changes require a server restart.
 
 Component state, client-side routing, route parameters, asynchronous requests, and testing user-visible behavior. This is an earlier learning project, separate from my single-screen [Movie Finder](https://github.com/lucasrigonatto/movie-finder).
 
-A frontend API key is visible in the browser bundle. API quotas, posters, and external availability depend on OMDb. A production static host must route unmatched application URLs to `index.html`. The app uses the existing Create React App toolchain.
+A frontend API key is visible in the browser bundle. API quotas, posters, and external availability depend on OMDb. A production static host must route unmatched application URLs to `index.html`. On GitHub Pages the router uses the project path from `homepage`. The app uses the existing Create React App toolchain.

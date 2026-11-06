@@ -87,7 +87,10 @@ test("shows detail request failures instead of an empty page", async () => {
   );
 });
 test("renders a not-found page for an unknown route", () => {
-  window.history.pushState({}, "", "/missing");
+  const base = process.env.PUBLIC_URL
+    ? new URL(process.env.PUBLIC_URL).pathname.replace(/\/$/, "")
+    : "";
+  window.history.pushState({}, "", base + "/missing");
   render(<App />);
   expect(
     screen.getByRole("heading", { name: "404 Not Found" }),
